@@ -1,0 +1,120 @@
+## Project information
+site_name: {{ cookiecutter.project_name }}
+site_description: {{ cookiecutter.description }}
+site_author: {{ cookiecutter.author_name }}
+repo_name: {{ cookiecutter.repo_name }}
+
+
+## Navigation
+nav:
+  - Home: index.md
+  - CLI: cli.md
+
+## Configuration
+docs_dir: docs
+theme:
+  name: material
+  language: en
+  icon:
+    repo: fontawesome/brands/github-alt
+  font:
+    text: Roboto
+    code: Roboto Mono
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.instant
+
+watch:
+  - ../src/{{ cookiecutter.repo_name }}
+
+## Plugins
+plugins:
+  # Built-in
+  search: { }
+  mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        paths:
+          - src
+        options:
+          # Headings
+          show_root_heading: true
+          show_root_full_path: false
+          # Docstrings
+          show_if_no_docstring: true
+          # Signatures/annotations
+          show_signature_annotations: true
+          # Other
+          show_bases: false
+
+markdown_extensions:
+  # Built-in
+  - markdown.extensions.abbr:
+  - markdown.extensions.admonition:
+  - markdown.extensions.attr_list:
+  - markdown.extensions.footnotes:
+  - markdown.extensions.meta:
+  - markdown.extensions.tables:
+  - markdown.extensions.toc:
+      permalink: true
+  # Extra
+  - mkdocs-typer:
+  # pymdownP
+  - pymdownx.arithmatex:
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret:
+  - pymdownx.critic:
+  - pymdownx.details:
+  - pymdownx.emoji:
+      # https://github.com/twitter/twemoji
+      # https://raw.githubusercontent.com/facelessuser/pymdown-extensions/master/pymdownx/twemoji_db.py
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      guess_lang: false
+      linenums_style: pymdownx-inline
+      use_pygments: true
+  - pymdownx.inlinehilite:
+  - pymdownx.keys:
+  - pymdownx.magiclink:
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      social_url_shortener: true
+      social_url_shorthand: true
+      normalize_issue_symbols: true
+      provider: github
+      user: pypa
+      repo: hatch
+  - pymdownx.mark:
+  - pymdownx.progressbar:
+  - pymdownx.saneheaders:
+  - pymdownx.smartsymbols:
+  - pymdownx.superfences:
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde:
+
+extra_css:
+  - assets/css/custom.css
